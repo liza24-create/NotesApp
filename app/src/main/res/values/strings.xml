@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">NotesApp</string>
+
+    <string name="main_title">My Creative Notes</string>
+    <string name="add_note_title">Add Note</string>
+    <string name="delete_note_title">Delete Note</string>
+
+    <string name="menu_add_note">Add Note</string>
+    <string name="menu_delete_note">Delete Note</string>
+
+    <string name="note_title">Write a Note Title</string>
+    <string name="note_content">Write a Note Content</string>
+
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+
+    <string name="error_empty">Please write a title and content</string>
 </resources>
