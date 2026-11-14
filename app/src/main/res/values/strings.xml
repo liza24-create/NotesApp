@@ -8,8 +8,8 @@
     <string name="menu_add_note">Add Note</string>
     <string name="menu_delete_note">Delete Note</string>
 
-    <string name="note_title">Write a Note Title</string>
-    <string name="note_content">Write a Note Content</string>
+    <string name="note_title">Enter Note Title</string>
+    <string name="note_content">Enter Note Content</string>
 
     <string name="btn_save">Save</string>
     <string name="btn_delete">Delete</string>

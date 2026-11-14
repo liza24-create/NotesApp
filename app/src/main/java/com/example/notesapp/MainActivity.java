@@ -1,8 +1,12 @@
 package com.example.notesapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,5 +24,25 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_add) {
+            Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
+            return true;
+        } else if (id == R.id.action_delete) {
+            Intent intent = new Intent(MainActivity.this, DeleteNoteActivity.class);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
