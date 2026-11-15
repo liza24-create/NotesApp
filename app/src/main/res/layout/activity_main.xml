@@ -9,6 +9,15 @@
     android:background="#FCE4EC"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="16dp"/>
+
     <ListView
         android:id="@+id/note_list"
         android:layout_width="match_parent"
