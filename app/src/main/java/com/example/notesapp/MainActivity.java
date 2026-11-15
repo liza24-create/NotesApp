@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_add) {
             Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.action_delete) {
             Intent intent = new Intent(MainActivity.this, DeleteNoteActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
