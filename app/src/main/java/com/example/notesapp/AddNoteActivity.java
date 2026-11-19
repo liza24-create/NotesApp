@@ -1,7 +1,6 @@
 package com.example.notesapp;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +16,8 @@ public class AddNoteActivity extends AppCompatActivity {
     private EditText etTitle, etContent;
     private Button btnSave;
 
+    private NotesDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class AddNoteActivity extends AppCompatActivity {
             return insets;
         });
 
+        db = new NotesDatabase(this);
 
         etTitle = findViewById(R.id.etTitle);
         etContent = findViewById(R.id.etContent);
@@ -40,8 +42,14 @@ public class AddNoteActivity extends AppCompatActivity {
             if (title.isEmpty() || content.isEmpty()) {
                 Toast.makeText(AddNoteActivity.this, R.string.error_empty, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(AddNoteActivity.this, "Note saved!", Toast.LENGTH_SHORT).show();
-                finish();
+                boolean isSaved = db.addNote(title, content);
+                if (isSaved) {
+                    Toast.makeText(AddNoteActivity.this, "Note saved!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(AddNoteActivity.this, "Error saving note", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
