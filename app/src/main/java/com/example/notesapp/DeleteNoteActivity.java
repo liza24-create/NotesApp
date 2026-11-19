@@ -1,9 +1,7 @@
 package com.example.notesapp;
 
-import android.content.DialogInterface;
+
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,6 +17,7 @@ import java.util.ArrayList;
 
 public class DeleteNoteActivity extends AppCompatActivity {
 
+    private NotesDatabase db;
     private ListView listViewNotes;
     private ArrayList<String> notesList;
     private ArrayAdapter<String> adapter;
@@ -36,9 +35,11 @@ public class DeleteNoteActivity extends AppCompatActivity {
         });
 
 
+        db = new NotesDatabase(this);
+
         listViewNotes = findViewById(R.id.note_list);
 
-        notesList = new ArrayList<>();
+        notesList = db.getAllNoteNames();
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notesList);
         listViewNotes.setAdapter(adapter);
@@ -56,9 +57,14 @@ public class DeleteNoteActivity extends AppCompatActivity {
         builder.setMessage("Are you sure you want to delete \"" + noteTitle + "\"?");
 
         builder.setPositiveButton(R.string.btn_delete, (dialog, which) -> {
-            notesList.remove(position);
-            adapter.notifyDataSetChanged();
-            Toast.makeText(DeleteNoteActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
+            boolean deleted = db.deleteNoteByName(noteTitle);
+            if (deleted) {
+                notesList.remove(position);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(DeleteNoteActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DeleteNoteActivity.this, "Error deleting note", Toast.LENGTH_SHORT).show();
+            }
         });
 
         builder.setNegativeButton(R.string.btn_cancel, (dialog, which) -> dialog.dismiss());
